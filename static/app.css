@@ -1,0 +1,743 @@
+/* essentia.css is a minimal and concise css framework consisting of two parts: layout and components.
+It derives its principles from Gestalt Theory, and the book Every Layout by Pickering and Bell.
+It uses exception based styling to provide sensible defaults that are overridden by exceptions. */
+
+:root {
+    /* Typography */
+    --font: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+    --font-mono: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+    -webkit-font-smoothing: antialiased;
+    /* --font-plain: Helvetica Neue, Helvetica, Arial, sans-serif;
+    --font-serif: Georgia, serif;
+    --font-special: Barlow Condensed, Helvetica, sans-serif;
+    --font-mono: Menlo, Courier, Courier New, Andale Mono, monospace; */
+    /* Colors */
+    --color-dark: #050505;
+    --color-darkish: #404040;
+    --color-lightish: #e6e6e6;
+    --color-light: #fafafa;
+    --color-mid: grey;
+    /* Modular Scale based on harmonic series */
+    --ratio: 1.4;
+    --s-5: clamp(0.33rem, 0.39rem + -0.29vw, 0.18rem);
+    --s-4: clamp(0.41rem, 0.47rem + -0.31vw, 0.25rem);
+    --s-3: clamp(0.51rem, 0.57rem + -0.31vw, 0.35rem);
+    --s-2: clamp(0.64rem, 0.69rem + -0.27vw, 0.5rem);
+    --s-1: clamp(0.8rem, 0.84rem + -0.18vw, 0.71rem);
+    --s0: clamp(1rem, 1rem + 0vw, 1rem);
+    --s1: clamp(1.25rem, 1.19rem + 0.32vw, 1.41rem);
+    --s2: clamp(1.56rem, 1.39rem + 0.85vw, 2rem);
+    --s3: clamp(1.95rem, 1.61rem + 1.7vw, 2.83rem);
+    --s4: clamp(2.44rem, 1.83rem + 3.04vw, 4rem);
+    --s5: clamp(3.05rem, 2.04rem + 5.07vw, 5.65rem);
+
+    --measure: 72ch;
+    --line-height: var(--ratio);
+    --line-height-small: calc(0.8*var(--ratio));
+    --border-thin: var(--s-5);
+    --border-thick: var(--s-2);
+    --padding: var(--s1);
+
+    line-height: var(--line-height);
+    font-size: calc(.333vw + 1em);
+    font-family: var(--font-plain);
+    background-color: var(--color-light);
+    color: var(--color-dark)
+}
+
+/* CSS Reset */
+*,
+:after,
+:before {
+    box-sizing: border-box;
+    background-color: inherit;
+    font-family: inherit;
+    color: inherit;
+    overflow-wrap: break-word;
+    margin: 0;
+    padding: 0;
+    border: 0 solid
+}
+
+[hidden] {
+    display: none
+}
+
+[hidden]+* {
+    margin-top: 0 !important
+}
+
+footer,
+header,
+main,
+nav {
+    display: block
+}
+
+main {
+    margin-block: var(--s4);
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-inline-size: 100%;
+}
+
+/* 6. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* 8. Improve line wrapping */
+p {
+    text-wrap: pretty;
+    overflow-wrap: break-word;
+}
+
+/*
+9. Create a root stacking context
+*/
+#root,
+#__next {
+    isolation: isolate;
+}
+
+/* Typography */
+* {
+    font-size: var(--s0);
+    font-weight: 500;
+    font-family: var(--font);
+    line-height: calc(1em + var(--s-2));
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+pre,
+code {
+    font-family: var(--font-mono);
+}
+
+small,
+small>* {
+    font-size: var(--s-1);
+    color: var(--color-darkish);
+}
+
+
+/* Headings */
+:is(h1, h2, h3, h4, h5, h6) {
+    /* font-family: var(--font-heading); */
+    text-wrap: balance;
+    overflow-wrap: break-word;
+    font-weight: 700;
+    line-height: var(--line-height-small);
+    hyphens: auto
+}
+
+h1 {
+    font-size: var(--s4);
+}
+
+h2 {
+    font-size: var(--s3);
+}
+
+h3 {
+    font-size: var(--s2);
+}
+
+h4 {
+    font-size: var(--s1);
+}
+
+h5,
+h6 {
+    font-size: var(--s0);
+}
+
+main>*+* {
+    margin-block-start: var(--s3)
+}
+
+/* Superscript & Subscript */
+:is(sup, sub) {
+    vertical-align: baseline;
+    position: relative;
+    font-size: 0.75em;
+}
+
+sup {
+    inset-block-start: -0.4em;
+}
+
+sub {
+    inset-block-start: 0.3em;
+}
+
+/* Links */
+a,
+a:visited {
+    color: var(--color-dark);
+    text-decoration-line: underline;
+    text-underline-offset: 0.2em;
+    text-shadow: 0 0 0.1ex rgba(0, 0, 0, 0);
+    transition: text-shadow 0.2s ease-in-out;
+}
+
+a:hover {
+    text-shadow: 0 0 0.2ex rgba(0, 0, 0, 0.35);
+}
+
+/* On link hover animate shadow */
+/* The fast way */
+.animated-shadow {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* Pre-render the bigger shadow, but hide it */
+.animated-shadow::after {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Transition to showing the bigger shadow on hover */
+.animated-shadow:hover::after {
+    opacity: 1;
+}
+
+/* body {
+    padding-block: var(--padding);
+    padding-inline: var(--padding);
+} */
+
+/* Container for responsive page width */
+.container {
+    max-inline-size: min(90%, 70rem);
+    margin-inline: auto;
+}
+
+/* @media (max-width: 40em) {
+    .container {
+        width: 90%;
+    }
+} */
+
+.wrapper {
+    border-width: var(--border-thick);
+    border: var(--border-thick) solid;
+    padding-block: var(--padding);
+    padding-inline: var(--padding);
+}
+
+/* Box
+-----------------------------------------------------------------------*/
+.box {
+    display: block;
+    padding-block: var(--padding);
+    padding-inline: var(--padding);
+    border-width: var(--border-thick);
+    border: var(--border-thick) solid;
+    /* For high contrast mode */
+    outline: var(--border-thick) solid transparent;
+    outline-offset: calc(var(--border-thick) * -1);
+}
+
+/* The Stack
+-----------------------------------------------------------------------*/
+.stack {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    --space: var(--s2);
+}
+
+.stack>*+* {
+    margin-block-start: var(--space);
+}
+
+/* The Center
+-----------------------------------------------------------------------*/
+.center {
+    box-sizing: content-box;
+    display: block;
+    margin-inline: auto;
+    max-inline-size: var(--measure);
+    /* Intrinsic Centering: That is, centering elements based on their natural, content-based widths. */
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+
+    /* Gutters */
+    padding-inline: var(--s0);
+}
+
+/* The Cluster
+-----------------------------------------------------------------------*/
+.cluster {
+    --space: var(--s0);
+    overflow: hidden;
+}
+
+.cluster>* {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin: calc(var(--space) / 2 * -1);
+}
+
+.cluster>*>* {
+    margin: calc(var(--space) / 2);
+}
+
+/* The Sidebar
+-----------------------------------------------------------------------*/
+.sidebar {
+    overflow: hidden;
+    --space: var(--s0);
+    --side-width: 15rem;
+    --content-min: 50%;
+}
+
+.sidebar>* {
+    display: flex;
+    flex-wrap: wrap;
+    margin: calc((var(--space) / 2) * -1);
+}
+
+.sidebar>*>* {
+    flex-basis: var(--side-width);
+    flex-grow: 1;
+    margin: calc((var(--space) / 2));
+}
+
+.sidebar>*> :last-child {
+    flex-basis: 0;
+    flex-grow: 999;
+    min-inline-size: calc(var(--content-min) - var(--space));
+}
+
+/* The Switcher
+-----------------------------------------------------------------------*/
+.switcher {
+    --threshold: 30rem;
+    --space: var(--s0);
+    --large: calc(1 + 7 / 10);
+}
+
+.switcher>* {
+    display: flex;
+    flex-wrap: wrap;
+    margin: calc(var(--space) / 2 * -1);
+}
+
+.switcher>*>* {
+    flex-grow: 1;
+    flex-basis: calc((var(--threshold) - (100% - var(--space))) * 999);
+    margin: calc(var(--space) / 2);
+}
+
+.switcher>*> :nth-last-child(n + 4),
+.switcher>*> :nth-last-child(n + 4)~* {
+    flex-basis: 100%;
+}
+
+/* The Cover
+-----------------------------------------------------------------------*/
+.cover {
+    --padding: var(--s0);
+    --min-block-size: 50vh;
+    --space: var(--s0);
+    display: flex;
+    flex-direction: column;
+    min-block-size: var(--min-block-size);
+    padding-block: var(--padding);
+    padding-inline: var(--padding);
+}
+
+.cover>* {
+    margin-block: var(--space);
+}
+
+/* h2 is the centered selector but can be any selector */
+.cover> :first-child:not(h2) {
+    margin-block-start: 0;
+}
+
+.cover> :last-child:not(h2) {
+    margin-block-end: 0;
+}
+
+/* h2 is the centered selector but can be any selector */
+.cover>h2 {
+    margin-block: auto;
+}
+
+/* The Grid
+-----------------------------------------------------------------------*/
+.grid {
+    --min: 15rem;
+    --space: var(--s0);
+    align-content: start;
+    display: grid;
+    gap: var(--space);
+    grid-template-columns: 100%;
+}
+
+/* needs javascript for when the container size is wider than the grid width */
+.grid.aboveMin {
+    grid-template-columns: repeat(auto-fit, minmax(var(--min), 1fr));
+}
+
+@supports (width: min(var(--minimum), 100%)) {
+    .grid {
+        grid-template-columns: repeat(auto-fit,
+                minmax(min(var(--minimum), 100%), 1fr));
+    }
+}
+
+/* The Frame
+-----------------------------------------------------------------------*/
+.frame {
+    padding-block-end: calc(var(--n) / var(--d) * 100%);
+    position: relative;
+}
+
+.frame916 {
+    --n: 9;
+    --d: 16;
+}
+
+.frame43 {
+    --n: 3;
+    --d: 4;
+}
+
+.frame-square {
+    --n: 1;
+    --d: 1;
+}
+
+.frame>* {
+    overflow: hidden;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.frame>img,
+.frame>video {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+}
+
+@media (orientation: portrait) {
+    .frame {
+        aspect-ratio: var(--d) / var(--n);
+    }
+}
+
+/* The Reel
+-----------------------------------------------------------------------*/
+.reel {
+    --space: var(--s0);
+    --item-min-size: auto;
+    --block-size: auto;
+    --track-color: var(--color-bg);
+    --thumb-color: var(--color-text);
+    display: flex;
+    block-size: var(--block-size);
+    overflow-x: scroll;
+    scrollbar-gutter: stable;
+    /* padding-inline: var(--padding);
+    padding-block: var(--padding); */
+}
+
+.reel::-webkit-scrollbar {
+    block-size: var(--s-1);
+    display: block;
+}
+
+.reel::-webkit-scrollbar-track {
+    background-color: var(--track-color);
+    opacity: 0.2;
+}
+
+.reel::-webkit-scrollbar-thumb {
+    background-color: var(--track-color);
+    background-image: linear-gradient(var(--track-color) 0,
+            var(--track-color) 0.25rem,
+            var(--thumb-color) 0.25rem,
+            var(--thumb-color) 0.75rem,
+            var(--track-color) 0.75rem);
+}
+
+.reel>* {
+    flex: 0 0 var(--item-min-size);
+}
+
+.reel>img {
+    block-size: 100%;
+    flex-basis: auto;
+    inline-size: auto;
+}
+
+.reel>*+* {
+    margin-inline-start: var(--space);
+}
+
+.reel.overflowing {
+    padding-block-end: var(--space);
+}
+
+/* Layout: Imposter
+ * Centers an element absolutely within its container.
+ * Useful for modals, overlays, or centered content.
+ * Supports containment to prevent overflow.
+ */
+.imposter {
+    position: var(--positioning, absolute);
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.imposter.contain {
+    --margin: 0px;
+    overflow: auto;
+    max-inline-size: calc(100% - (var(--margin) * 2));
+    max-block-size: calc(100% - (var(--margin) * 2));
+}
+
+/* Layout: Icon
+ * Provides consistent sizing for icons.
+ * Uses relative units for better typography integration.
+ * Supports modern cap unit where available.
+ */
+.icon {
+    height: 0.75em;
+    height: 1cap;
+    width: 0.75em;
+    width: 1cap;
+}
+
+.with-icon {
+    display: inline-flex;
+    align-items: baseline;
+}
+
+.with-icon .icon {
+    margin-inline-end: var(--space, 0.5em);
+}
+
+/* Layout: Flow
+ * Creates natural flow between elements with consistent spacing.
+ * Adapts spacing for different heading levels.
+ * Useful for article or long-form content.
+ */
+/* .flow>* {
+    margin-block-start: var(--s1);
+} */
+
+.flow>*+* {
+    margin-block-start: var(--flow-space, var(--s0));
+}
+
+.flow h1 {
+    --flow-space: var(--s2);
+}
+
+.flow h2 {
+    --flow-space: var(--s2);
+}
+
+.flow h3 {
+    --flow-space: var(--s1);
+}
+
+/* Navigation */
+nav {
+    /* background-color: var(--color-dark); */
+    margin: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s1);
+    padding: var(--s1);
+}
+
+.nav-logo {
+    font-weight: 700;
+    font-size: var(--s1);
+    font-family: var(--font-mono);
+}
+
+nav ul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+nav li {
+    list-style-type: none;
+    margin-inline-start: var(--s0);
+}
+
+nav a {
+    text-decoration-line: none;
+    font-weight: 600;
+}
+
+header {
+    margin-block-start: var(--s1);
+    max-inline-size: calc(1.5*var(--measure));
+    /* centered */
+    margin-inline: auto;
+}
+
+footer {
+    margin-block: var(--s4);
+    margin-inline: var(--s3);
+    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* Gutters */
+    padding-inline: var(--s0);
+}
+
+
+/* Focus styles */
+:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Utility Classes */
+.full-width {
+    max-inline-size: none;
+}
+
+.measure {
+    max-inline-size: var(--measure);
+}
+
+.center-x {
+    margin-inline: auto;
+}
+
+.center-y {
+    margin-block: auto;
+}
+
+/* Color Utilities */
+.bg-page {
+    background-color: var(--color-base);
+}
+
+.bg-surface {
+    background-color: var(--color-surface);
+}
+
+.bg-primary {
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+}
+
+.bg-accent {
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+}
+
+.text-base {
+    color: var(--color-text);
+}
+
+.text-muted {
+    color: var(--color-text-muted);
+}
+
+.text-primary {
+    color: var(--color-primary);
+}
+
+.text-accent {
+    color: var(--color-accent);
+}
+
+/* Status Colors */
+.text-info {
+    color: var(--color-info);
+}
+
+.text-success {
+    color: var(--color-success);
+}
+
+.text-warning {
+    color: var(--color-warning);
+}
+
+.text-error {
+    color: var(--color-error);
+}
+
+.bg-info {
+    background-color: var(--color-info);
+    color: var(--color-bg);
+}
+
+.bg-success {
+    background-color: var(--color-success);
+    color: var(--color-bg);
+}
+
+.bg-warning {
+    background-color: var(--color-warning);
+    color: var(--color-bg);
+}
+
+.bg-error {
+    background-color: var(--color-error);
+    color: var(--color-bg);
+}
+
+.full-width {
+    max-inline-size: none;
+}
+
+.space-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
