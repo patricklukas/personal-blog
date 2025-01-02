@@ -15,7 +15,7 @@ It uses exception based styling to provide sensible defaults that are overridden
     --color-dark: #050505;
     --color-darkish: #404040;
     --color-lightish: #e6e6e6;
-    --color-light: #fafafa;
+    --color-light: #f6f6f6;
     --color-mid: grey;
     /* Modular Scale based on harmonic series */
     --ratio: 1.4;
@@ -39,7 +39,7 @@ It uses exception based styling to provide sensible defaults that are overridden
     --padding: var(--s1);
 
     line-height: var(--line-height);
-    font-size: calc(.333vw + 1em);
+    font-size: calc(.2vw + 1em);
     font-family: var(--font-plain);
     background-color: var(--color-light);
     color: var(--color-dark)
@@ -75,7 +75,8 @@ nav {
 }
 
 main {
-    margin-block: var(--s4);
+    /* margin-block: var(--s4); */
+    flex: 1;
 }
 
 img,
@@ -99,6 +100,7 @@ select {
 p {
     text-wrap: pretty;
     overflow-wrap: break-word;
+    /* hyphens: auto; */
 }
 
 /*
@@ -133,6 +135,17 @@ small>* {
     color: var(--color-darkish);
 }
 
+html,
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+hr {
+    border-width: 1px;
+    border: 1px solid var(--color-mid);
+}
 
 /* Headings */
 :is(h1, h2, h3, h4, h5, h6) {
@@ -141,7 +154,7 @@ small>* {
     overflow-wrap: break-word;
     font-weight: 700;
     line-height: var(--line-height-small);
-    hyphens: auto
+    hyphens: auto;
 }
 
 h1 {
@@ -308,6 +321,11 @@ a:hover {
     --space: var(--s0);
     --side-width: 15rem;
     --content-min: 50%;
+    display: flex;
+}
+
+.sidebar-reverse {
+    flex-direction: row-reverse;
 }
 
 .sidebar>* {
@@ -412,6 +430,7 @@ a:hover {
 .frame {
     padding-block-end: calc(var(--n) / var(--d) * 100%);
     position: relative;
+    aspect-ratio: var(--n) / var(--d);
 }
 
 .frame916 {
@@ -572,7 +591,6 @@ a:hover {
 /* Navigation */
 nav {
     /* background-color: var(--color-dark); */
-    margin: 0;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -581,7 +599,11 @@ nav {
     align-items: center;
     justify-content: space-between;
     gap: var(--s1);
-    padding: var(--s1);
+    inline-size: 90%;
+    max-inline-size: calc(1.5*var(--measure));
+    /* centered */
+    margin-inline: auto;
+    /* padding: var(--s1); */
 }
 
 .nav-logo {
@@ -607,22 +629,23 @@ nav a {
 }
 
 header {
-    margin-block-start: var(--s1);
-    max-inline-size: calc(1.5*var(--measure));
-    /* centered */
-    margin-inline: auto;
+    box-shadow: 0 0 1ex rgba(0, 0, 0, 0.15);
+    margin-block-end: var(--s5);
+    padding-block: var(--s0);
 }
 
 footer {
-    margin-block: var(--s4);
-    margin-inline: var(--s3);
-    display: block;
+    padding-block: var(--s3);
+    margin-block-start: var(--s5);
+    padding-inline: var(--s3);
+    /* display: block; */
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 0 0 1ex rgba(0, 0, 0, 0.15);
 
     /* Gutters */
-    padding-inline: var(--s0);
+    /* padding-inline: var(--s0); */
 }
 
 
