@@ -20,9 +20,15 @@ const config = {
 	extensions: ['.svelte', '.md'],
 
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({
+			// show site's 404 page +error.svelte
+			fallback: true
+		}),
 		prerender: {
 			entries: ['*']
+		},
+		paths: {
+			base: process.env.PUBLIC_SITE_URL
 		}
 	}
 };
