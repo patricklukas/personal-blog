@@ -1,0 +1,1 @@
+import{a as d,t as v}from"../chunks/disclose-version.gWCgNflt.js";import"../chunks/legacy.DZqyThBX.js";import{D as o,F as r}from"../chunks/runtime.CHbzHt_K.js";import{s as m}from"../chunks/slot.B8TGb_Ii.js";var p=v('<div class="center stack"><div><!></div></div>');function u(i,s){var a=p(),t=o(a),e=o(t);m(e,s,"default",{}),r(t),r(a),d(i,a)}export{u as component};

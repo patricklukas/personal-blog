@@ -1,0 +1,1 @@
+import{a as t,t as a}from"../chunks/disclose-version.gWCgNflt.js";import"../chunks/legacy.DZqyThBX.js";var e=a(`<div class="center stack"><div><div class="flow"><h1>Error 404</h1> <p>Whoops! That page doesn't exist</p></div></div></div>`);function s(o){var r=e();t(o,r)}export{s as component};
