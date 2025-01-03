@@ -35,7 +35,7 @@ It uses exception based styling to provide sensible defaults that are overridden
 
     --gutter: var(--s3);
 
-    --measure: 80ch;
+    --measure: 72ch;
     --line-height: var(--ratio);
     --line-height-small: calc(0.8*var(--ratio));
     --border-thin: var(--s-5);
@@ -156,7 +156,7 @@ hr {
 /* Headings */
 :is(h1, h2, h3, h4, h5, h6) {
     /* font-family: var(--font-heading); */
-    text-wrap: balance;
+    text-wrap: pretty;
     overflow-wrap: break-word;
     font-weight: 600;
     line-height: var(--line-height-small);
@@ -606,12 +606,9 @@ a:hover {
     --flow-space: var(--s2);
 }
 
-.flow h2 {
-    --flow-space: var(--s2);
-}
-
+.flow h2,
 .flow h3 {
-    --flow-space: var(--s1);
+    --flow-space: var(--s0);
 }
 
 .flow p {
