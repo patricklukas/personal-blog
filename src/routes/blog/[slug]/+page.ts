@@ -10,8 +10,8 @@ export const load: PageLoad = async ({ params }: { params: { slug: string } }) =
     try {
         const post = await import(`../${params.slug}.md`) as PostData;
         console.log('Imported Post:', post); // Debugging output
-        
-        const { title, date } = post.metadata;
+
+        const { title, date, description } = post.metadata;
         const Content = post.default;
 
         if (!title || !date) {
@@ -22,7 +22,8 @@ export const load: PageLoad = async ({ params }: { params: { slug: string } }) =
             Content,
             meta: {
                 title,
-                date
+                date,
+                description
             }
         };
     } catch (error) {

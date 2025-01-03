@@ -9,6 +9,7 @@
 <svelte:head>
     <title>Pat's Page - Blog</title>
     <meta property="og:title" content="Pat's Blog" />
+    <meta name="description" content="A blog about life" />
 </svelte:head>
 
 <div class="stack">

@@ -3,13 +3,14 @@
     export let data;
     const {
         Content,
-        meta: { title, date },
+        meta: { title, date, description },
     } = data;
 </script>
 
 <svelte:head>
     <title>Pat's Page - {title}</title>
     <meta property="og:title" content={title} />
+    <meta name="description" content={description} />
 </svelte:head>
 
 <article class="flow">
