@@ -9,7 +9,7 @@
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"postbuild": "npx svelte-sitemap --domain https://patrickhein.me"
+		"postbuild": "npx svelte-sitemap --domain https://www.patrickhein.me"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
