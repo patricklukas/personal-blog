@@ -1,6 +1,6 @@
-import { fetchMarkdownPosts } from '$lib/utils';
+import { fetchPosts } from '$lib/utils';
 import type { Post } from '$lib/types';
-import type { RequestHandler } from './$types';
+// import type { RequestHandler } from './$types';
 import { PUBLIC_SITE_URL, PUBLIC_SITE_TITLE, PUBLIC_SITE_DESCRIPTION } from '$env/static/public';
 
 // Replace the process.env calls with:
@@ -10,18 +10,19 @@ const siteDescription = PUBLIC_SITE_DESCRIPTION;
 
 export const prerender = true;
 
-export const GET: RequestHandler = async () => {
-    const allPosts = await fetchMarkdownPosts();
+export const GET = async () => {
+    const allPosts = await fetchPosts();
     const body = render(allPosts);
 
-    const options: ResponseInit = {
-        headers: {
-            'Cache-Control': 'max-age=0, s-maxage=3600',
-            'Content-Type': 'application/xml'
-        }
+    const headers = {
+        'Cache-Control': 'max-age=0, s-maxage=3600',
+        'Content-Type': 'application/xml'
     };
 
-    return new Response(body, options);
+    return new Response(body, {
+        status: 200,
+        headers
+    });
 };
 
 const render = (posts: Post[]): string => `<?xml version="1.0" encoding="UTF-8" ?>

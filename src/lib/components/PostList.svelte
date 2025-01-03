@@ -9,13 +9,19 @@
 <div class="stack">
     {#each posts as post}
         <article class="flow">
-            <a class="no-underline" href={post.path}>
+            <a
+                data-sveltekit-preload-code
+                class="no-underline"
+                href={post.path}
+            >
                 <h3>{post.meta.title}</h3>
                 <small>{formatDate(post.meta.date)}</small>
             </a>
             <p>{post.meta.description}</p>
             <p>
-                <a href={post.path}>Continue reading...</a>
+                <a data-sveltekit-preload-code href={post.path}
+                    >Continue reading...</a
+                >
             </p>
         </article>
     {/each}

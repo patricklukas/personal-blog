@@ -29,7 +29,7 @@
     <div>
         <div class="stack">
             <h2>Latest from the blog</h2>
-            <PostList posts={data.posts.data} />
+            <PostList posts={data.posts} />
         </div>
     </div>
     <hr />

@@ -13,5 +13,5 @@
 
 <div class="stack">
     <h1>Blog</h1>
-    <PostList posts={data.posts.data} />
+    <PostList posts={data.posts} />
 </div>

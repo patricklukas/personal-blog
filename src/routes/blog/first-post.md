@@ -1,6 +1,6 @@
 ---
 title: "Simplicity rules it all"
-date: "2025-01-02"
+date: "2025-01-01"
 description: "Most Ideas don't scale well. Complexity is unavoidable. We as humans tend to always arrive at the same amount of risk we are taking. Introduce seatbelts and people will drive less safely."
 ---
 
