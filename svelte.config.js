@@ -22,7 +22,7 @@ const config = {
 	kit: {
 		adapter: adapter({
 			// show site's 404 page +error.svelte
-			fallback: true
+			fallback: '404.html'
 		}),
 		prerender: {
 			entries: ['*']
