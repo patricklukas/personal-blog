@@ -228,12 +228,19 @@ a:visited {
     text-decoration-line: underline;
     text-underline-offset: 0.2em;
     text-shadow: 0 0 0.1ex rgba(0, 0, 0, 0);
-    transition: text-shadow 0.2s ease-in-out;
+    transition: text-shadow 0.15s ease-in-out;
+}
+
+a,
+a:active {
+    outline: none;
+    box-shadow: none;
 }
 
 a:hover {
-    text-shadow: 0 0 0.2ex rgba(0, 0, 0, 0.35);
+    text-shadow: 0 0 0.3ex rgba(0, 0, 0, 0.35);
 }
+
 
 /* On link hover animate shadow */
 /* The fast way */
@@ -677,8 +684,10 @@ footer {
 
 /* Focus styles */
 :focus {
-    outline: 2px solid var(--color-primary);
+    // add transition
+    outline: 2px solid rgba(0, 0, 0, 0.35);
     outline-offset: 2px;
+    transition: all 0.25s ease-in-out;
 }
 
 /* Utility Classes */
