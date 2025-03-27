@@ -35,7 +35,7 @@ It uses exception based styling to provide sensible defaults that are overridden
 
     --gutter: var(--s3);
 
-    --measure: 72ch;
+    --measure: 60ch;
     --line-height: var(--ratio);
     --line-height-small: calc(0.8*var(--ratio));
     --border-thin: var(--s-5);
@@ -43,7 +43,7 @@ It uses exception based styling to provide sensible defaults that are overridden
     --padding: var(--s1);
 
     line-height: var(--line-height);
-    font-size: calc(.15vw + 1em);
+    font-size: calc(.15vw + 1.1em);
     font-family: var(--font-plain);
     background-color: var(--color-light);
     color: var(--color-dark)
